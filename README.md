@@ -1,8 +1,12 @@
 ## API REST com o framework falcon do Python
 
 ### instale as dependências
-``` pip install -r requirements
+```shell
+$ pip install -r requirements.txt
+```
 
 ### rode a aplicação
-``` ./app.sh
+```shell
+$ ./app.sh
+```
 
