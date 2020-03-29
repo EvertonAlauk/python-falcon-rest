@@ -5,7 +5,7 @@
 $ pip install -r requirements.txt
 ```
 
-### run
+### run (port 3000)
 ```shell
 $ ./app.sh
 ```
