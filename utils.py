@@ -6,6 +6,7 @@ rr_constants = RiskRankConstants()
 class Operations:
 
     def risk_rank(self, response):
+        # Creio eu que o pedido de cálculo de confiável e não confiável é por esse caminho
         credit_wallet = 0.0
         risk_total = 0.0
         for i in range(0, len(response["operation_items"])):
@@ -28,6 +29,9 @@ class Operations:
             risk_type = rr_constants.RISK_TYPES[4]
         else:
             risk_type = None
+        # retorno do risco total, da carteira de crédito, do total e do tipo de risco
+        # (sendo esse último uma informação que pode ser gerada por uma tecnologia frontend)
+        # até pensei em retirar, mas decidi manter
         return { "risk_total": risk_total,  "credit_wallet": credit_wallet, "total": total, "risk_type": risk_type }
 
     def category_code(self, response, category_code, operation_items):

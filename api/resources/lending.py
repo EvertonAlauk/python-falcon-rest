@@ -28,8 +28,8 @@ class Lending:
             operation_items=self.operation_items
         )
         # busca por código da categoria
-        if category_sub_code:
-            # 1 
+        if category_sub_code and not due_code:
+            # 13, 14, 15, 16
             if self.operation_category_sub_code:
                 self.operation_category_sub_code = []
             self.operation_items = operation.category_sub_code(
@@ -38,10 +38,29 @@ class Lending:
                 category_sub_code=str(category_sub_code)
             )
         # busca por código de vencimento
-        if due_code:
+        if due_code and not category_sub_code:
             # 110, 120, 130, 140, 150
             if self.operation_due_code:
                 self.operation_due_code = []
+            self.operation_items = operation.due_code(
+                response=response,
+                operation_due_code=self.operation_due_code,
+                due_code=due_code
+            )
+        # busca por código da categoria e por código de vencimento
+        if category_sub_code and due_code:
+            # 13, 14, 15, 16
+            if self.operation_category_sub_code:
+                self.operation_category_sub_code = []
+            # 110, 120, 130, 140, 150
+            if self.operation_due_code:
+                self.operation_due_code = []
+            self.operation_items = operation.category_sub_code(
+                response=response,
+                operation_category_sub_code=self.operation_category_sub_code,
+                category_sub_code=str(category_sub_code)
+            )
+            response["operation_items"] = self.operation_items
             self.operation_items = operation.due_code(
                 response=response,
                 operation_due_code=self.operation_due_code,
